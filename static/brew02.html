@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.1.min.js" ></script>
+
+<html>
+    
+    <head>
+       
+        <meta http-equiv='cache-control' content='no-cache'> 
+        <meta http-equiv='expires' content='0'> 
+        <meta http-equiv='pragma' content='no-cache'> 
+        
+        <title></title>
+        <link rel="stylesheet" href="">
+    
+        <script type="text/javascript">
+           
+           $( document ).ready(function() {
+    
+            scrollBrews();
+
+            }) 
+           
+            
+            function scrollBrews() {
+                
+                strUrl = "https://api.openbrewerydb.org/v1/breweries/random";
+               
+                   $.getJSON(strUrl, function(jsonBrewery) {
+                                   
+                     document.getElementById("brewery").innerHTML = jsonBrewery[0].name +'<br> ' + jsonBrewery[0].city + ', ' + jsonBrewery[0].state ;
+                     document.getElementById("type").innerHTML = 'type: ' + jsonBrewery[0].brewery_type ;
+                     
+                    urlBrew = jsonBrewery[0].website_url;
+                    if (urlBrew != null)
+                        document.getElementById("url").innerHTML = '<a href=' + urlBrew + ' target="_blank" >'  + jsonBrewery[0].website_url + '</a> ';
+
+                })   
+                
+                setInterval(function () {
+                     scrollBrews();
+                }, 3000); //5 seconds
+                          
+            }
+
+        </script>
+   
+    </head>
+    
+    <body>
+
+        <br><br>
+        <div id="brewery" style="text-align:center;font-size:3em; color:navy;"> </div>
+        <div id="type" style="text-align:center;font-size:2em; color:rgb(126, 65, 65);"> </div>
+        <br>
+        <div id="url" style="text-align:center;font-size:2em; color:rgb(126, 65, 65);"> </div>
+
+        <br><br><br><br><br><br>
+
+        <div style="text-align:center;font-size:1em; color:navy;">   page created by rsharpe using the cool data and api at<br> <a href='https://www.openbrewerydb.org  ' target="_blank" > openbreweryDb.org</a> </div>
+       
+        
+        <script src="" async defer></script>
+   
+        
+    </body>
+
+      <!--  rsharpe 2024 -->
+    
+
+    </html>
+
+    
